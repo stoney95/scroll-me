@@ -1,0 +1,26 @@
+.skill {
+    background-color: rgb(26, 26, 26);
+    color: white;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 1em;
+    margin: 3px;
+    padding-bottom: 0.08em;
+    // padding-top: 0.08em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.multi-column {
+    width: 100%;
+    height: fit-content;
+    align-self: center;
+}
+
+.skill:hover {
+    color: white;
+    font-weight: bold;
+    // background: linear-gradient(60deg, #ee76525d, #ee7652bd, #ee76525d);
+    background: #23a6d5;
+}

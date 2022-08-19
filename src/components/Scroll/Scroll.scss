@@ -1,0 +1,31 @@
+.scroll-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, 0.464); */
+    border-radius: 10px;
+    padding: 20px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+  }
+  
+  .scroll-text {
+    font-size: 30pt;
+    /* color: rgb(0, 235, 252); */
+    /* background: linear-gradient(60deg, #23a6d5, #23d5ab); */
+    background: white;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .scroll-triangle {
+    width: 30px;
+    height: 30px;
+    border-right: 5px solid;
+    border-bottom: 5px solid;
+    /* border-color: rgb(0, 235, 252); */
+    transform: rotate(45deg);
+    border-image: linear-gradient(60deg, #23a6d5, #23d5ab) 1;
+  }

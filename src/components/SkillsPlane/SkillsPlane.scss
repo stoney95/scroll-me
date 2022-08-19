@@ -1,0 +1,73 @@
+.skill-container {
+    padding-top: 30vh;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.plane{
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    // background-color: rgba(28, 99, 85, 0.05);
+    // box-shadow: 0px 0px 15px 2px black;
+    // border: 1px solid;
+    position: relative;
+    grid-auto-rows: auto;
+}
+
+.skill-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.x-axis-labels {
+    display: flex;
+    flex-direction: row;
+}
+
+.x-axis-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+
+    // position: absolute;
+    // bottom: 0px;
+    // font-size: 14px;
+    // transform: translate(-50%, 100%)
+}
+
+.y-axis-lable {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    font-size: 14px;
+    transform: translate(-100%, -50%)
+}
+
+.level-description {
+    text-align: start;
+    font-size: 10px;
+    width: 30%;
+}
+
+.inner-row {
+    display: grid;
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.top-to-bottom {
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+
+.top-to-bottom:hover {
+    border-left: 3px solid;
+    border-right: 3px solid;
+    border-image: linear-gradient(#23a6d5, #23d5ab) 1;
+}

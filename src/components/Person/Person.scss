@@ -1,0 +1,26 @@
+.person-title {
+    font-size: 50pt;
+    position: absolute;
+    top: 20vh;
+    left: 50vw;
+  }
+
+.person-picture-container {
+    position: absolute;
+    width: 35vw;
+    height: 35vw;
+    border-radius: 50%;
+    border: 3px solid #23a6d5;
+    overflow: hidden;
+    left: 10vw;
+}
+
+.person-picture {
+    width: 100%;
+    height: 100%;
+}
+
+.person-description {
+    position: absolute;
+    left: 50vw;
+}
