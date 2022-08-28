@@ -107,9 +107,6 @@ const SkillsPlaneContainer: FC = () => {
     const sortedSkills = transformedSkills.sort(sortSkill)
     const groupedSkills = groupSkills(sortedSkills)
 
-    console.log(transformedSkills)
-    console.log(groupedSkills)
-
     return (<SkillsPlaneView skills={groupedSkills} areas={areas} levels={levels}/>)
 }
 
