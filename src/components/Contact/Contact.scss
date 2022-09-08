@@ -1,0 +1,44 @@
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 1em;
+    transform-origin: center center;
+    background-size: 200% 200%;
+    border-radius: 2vh;
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-100%, -50%); //TODO: required?
+}
+
+.contact-hint {
+    font-size: 50pt;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contact-icon-border {
+    height: calc(min(7vh, 7vw));
+    width: calc(min(7vh, 7vw));
+    border: 0.25em solid #23a6d5;
+    border-radius: 100%;
+    pointer-events: none;
+    padding: 1em;
+}
+
+.contact-icon {
+    width: 100%;
+}
+
+.contact-text {
+    font-size: 40pt;
+    padding-left: 0.5em;
+    pointer-events: none;
+    color: white;
+    max-width: 20vw;
+}

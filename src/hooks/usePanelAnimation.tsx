@@ -26,7 +26,7 @@ const usePanelAnimation = (panelsWithLabels: PanelWithLabel[]) => {
                   trigger: panel.current,
                   start: "top bottom",
                   end: "bottom bottom",
-                  snap: {snapTo: 1, delay: 0.0, duration: {min: 0.05, max: 2}}
+                //   snap: {snapTo: 1, delay: 0.0, duration: {min: 0.05, max: 2}}
                 }
             })
         })

@@ -1,12 +1,16 @@
-import {FC, useContext} from 'react';
+import {createRef, FC, RefObject, useContext, useEffect} from 'react';
 
 import {default as SkillsPlaneView} from "./SkillsPlane-view";
-import {Skill, Area, Level, TransformedSkill, TableData, TableRow, InnerTableRow} from "./types"
+import {Skill, Area, Level, TransformedSkill, TableData, TableRow, InnerTableRow, TableRowWithRef} from "./types"
 
 import { SkillContext } from "../../context/data/skills"
+import { animateApperiance } from './animations';
 
+interface SkillsProps {
+    panelRef: RefObject<HTMLDivElement>;
+}
 
-const SkillsPlaneContainer: FC = () => {
+const SkillsPlaneContainer: FC<SkillsProps> = ({panelRef}) => {
     const skills = useContext(SkillContext);
     const areas = Object.values(Area);
     const levels = Object.values(Level);
@@ -43,7 +47,7 @@ const SkillsPlaneContainer: FC = () => {
     }
 
     function groupSkills(skills: Array<TransformedSkill>): TableData {
-        const result = {rows: new Array<TableRow>()}
+        const result = {rows: new Array<TableRowWithRef>()}
         var previousSkill: TransformedSkill = skills[0];
         var currentInnerRow = 1;
         var elementInRow = true;
@@ -56,7 +60,8 @@ const SkillsPlaneContainer: FC = () => {
 
         var currentTableRow = {
             innerRows: [currentInnerTableRow],
-            rowNumber: previousSkill.position.row
+            rowNumber: previousSkill.position.row,
+            ref: createRef<HTMLDivElement>()
         };
 
         const positionEqual = (skillA: TransformedSkill, skillB: TransformedSkill) => {
@@ -76,7 +81,7 @@ const SkillsPlaneContainer: FC = () => {
         skills.slice(1).forEach(skill => {
             if (!(skill.position.row === currentTableRow.rowNumber)) {
                 result.rows.push(currentTableRow);
-                currentTableRow = {innerRows: new Array<InnerTableRow>(), rowNumber: skill.position.row};
+                currentTableRow = {innerRows: new Array<InnerTableRow>(), rowNumber: skill.position.row, ref: createRef<HTMLDivElement>()};
                 currentInnerRow = 1;
                 elementInRow = false;
             }
@@ -106,6 +111,11 @@ const SkillsPlaneContainer: FC = () => {
     const transformedSkills = skills.map((skill: Skill) => transformSkill(skill))
     const sortedSkills = transformedSkills.sort(sortSkill)
     const groupedSkills = groupSkills(sortedSkills)
+    const refs = groupedSkills.rows.map(row => row.ref);
+
+    useEffect(() => {
+        animateApperiance(refs, panelRef);
+    })
 
     return (<SkillsPlaneView skills={groupedSkills} areas={areas} levels={levels}/>)
 }

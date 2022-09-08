@@ -65,30 +65,30 @@
   padding-right: 3px;
 }
 
-.mail {
-  position: absolute;
-  left: 20vw;
-  top: 30vh;
-}
+// .mail {
+//   position: absolute;
+//   left: 20vw;
+//   top: 30vh;
+// }
 
-.github {
-  position: absolute;
-  left: 50vw;
-  top: 50vh;
-  transform: translate(-100%, -50%);
-}
+// .github {
+//   position: absolute;
+//   left: 50vw;
+//   top: 50vh;
+//   transform: translate(-100%, -50%);
+// }
 
-.location {
-  position: absolute;
-  left: 30vw;
-  top: 60vh;
-}
+// .location {
+//   position: absolute;
+//   left: 30vw;
+//   top: 60vh;
+// }
 
-.linkedin {
-  position: absolute;
-  left: 60vw;
-  top: 70vh;
-}
+// .linkedin {
+//   position: absolute;
+//   left: 60vw;
+//   top: 70vh;
+// }
 
 .contact-container {
   display: flex;
@@ -99,39 +99,20 @@
   transform-origin: center center;
   background-size: 200% 200%;
   border-radius: 2vh;
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-100%, -50%);
 }
 
 .contact-hint {
   font-size: 50pt;
   position: absolute;
-  // top: 15vh;
-  // left: 8vw;
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
-.contact-test {
-  position: absolute;
-  top: 50vh;
-  left: 50vw;
-  width: 30px;
-  aspect-ratio: 1 / 1;
-  background-color: red;
-  transform: translate(-50%, -50%);
-}
-
-// .contact-circle {
-//   position: absolute;
-//   top: 50vh;
-//   left: 50vw;
-//   transform: translate(-50%, -50%);
-//   width: 70vh;
-//   height: 70vh;
-//   border: 3px solid black;
-//   border-radius: 100%;
-// }
 
 .contact-icon-border {
   height: calc(min(7vh, 7vw));

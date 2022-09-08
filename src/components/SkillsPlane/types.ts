@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 export enum Area {
     DATA_ENGINEERING = "Data Engineering",
     MACHINE_LEARNING = "Machine Learning",
@@ -44,6 +46,10 @@ export type TableRow = {
     rowNumber: number;
 }
 
+export interface TableRowWithRef extends TableRow {
+    ref: RefObject<HTMLDivElement>;
+}
+
 export type TableData = {
-    rows: Array<TableRow>;
+    rows: Array<TableRowWithRef>;
 }

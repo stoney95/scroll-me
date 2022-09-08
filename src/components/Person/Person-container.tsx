@@ -20,11 +20,11 @@ const PersonContainer: FC<PersonProps> = ({panelRef}) => {
             },
             {
                 scrollTrigger: {
-                trigger: panelRef.current,
-                start: "top 20%",
-                end: "top top",
-                pin: title,
-                scrub: 0.5,
+                    trigger: panelRef.current,
+                    start: "top 20%",
+                    end: "top top",
+                    pin: title,
+                    scrub: 0.5,
                 },
                 opacity: 1
             }

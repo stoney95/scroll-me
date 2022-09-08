@@ -1,8 +1,8 @@
-import {FC, useEffect} from "react";
+import {FC, RefObject, useEffect} from "react";
 
 import "./SkillsPlane.scss";
 import SkillView from "./Skill"
-import {TableData, TableRow, Area, Level} from "./types"
+import {TableData, TableRowWithRef, Area, Level} from "./types"
 
 interface ISkillPlaneView {
     skills: TableData;
@@ -11,8 +11,8 @@ interface ISkillPlaneView {
 }
 
 
-const generateRow = (row: TableRow, numColumns: number, numRows: number) => {
-    return <div className="inner-row top-to-bottom" style={{gridTemplateColumns: `repeat(${numColumns}, 1fr)`}}>
+const generateRow = (row: TableRowWithRef, numColumns: number, numRows: number) => {
+    return <div ref={row.ref} className="inner-row top-to-bottom" style={{gridTemplateColumns: `repeat(${numColumns}, 1fr)`}}>
         {
             row.innerRows.map(row => {
                 return <div 
