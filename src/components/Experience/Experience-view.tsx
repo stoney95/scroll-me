@@ -13,14 +13,16 @@ function addExperienceDetails(experiences: Map<number, Map<number, ExperienceVie
     return <>{
         experiencesArray.map((experience) => {
             return <>
-                <div ref={experience.titleRef} className='experience-short-description'>
+                <div ref={experience.titleRef} className='experience-title'>
                     {experience.title}
                 </div>
                 <div ref={experience.labelRef} className='experience-label-container'>
                     {experience.labels.map(label => <div className='experience-label'>{label}</div>)}
                 </div>
-                <div ref={experience.descriptionRef} className='experience-long-description'>
-                    {experience.description}
+                <div className="experience-description-container">
+                    <div ref={experience.descriptionRef} className='experience-description'>
+                        <p>{experience.description}</p>
+                    </div>
                 </div>
             </>
         })

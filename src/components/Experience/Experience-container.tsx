@@ -121,19 +121,14 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                   
                 tl.fromTo(experience.labelRef.current,
                     {top: `40vh`},
-                    {top: "50%", duration: 1, transform: "translateY(-50%)"}  
+                    {top: "60%", duration: 1}  
                 ).addLabel(`labelsInPlace${year}${month}`)
             
                 tl.fromTo(experience.descriptionRef.current,
-                    {top: `40vh`},
-                    {top: "50%", duration: 0.75, transform: "translateY(-50%)"},
+                    {height: "0%"},
+                    {height: "100%", duration: 1},
                     "<25%"  
                 ).addLabel(`descriptionInPlace${year}${month}`)
-            
-                tl.to(experience.titleRef.current, 
-                    {opacity: 0.4},
-                    `descriptionInPlace${year}${month}-=50%`
-                ).addLabel(`titleFadedOut${year}${month}`)
             
                 tl.to(experience.labelRef.current,
                     {opacity: 0.0, duration:0.5}  

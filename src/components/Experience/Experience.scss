@@ -62,8 +62,8 @@
   align-items: end;
   justify-content: end;
   flex-wrap: wrap;
-  top: 30%;
-  left: 20vw;
+  top: 70%;
+  left: 30vw;
 }
 
 .experience-label {
@@ -82,25 +82,41 @@
   height: 1em;
 }
 
-.experience-short-description {
+.experience-title {
   position: absolute;
-  font-size: 50pt;
+  font-size: 30pt;
+  font-weight: bold;
   // background: linear-gradient(60deg, #23a6d5, #23d5ab); 
   background: linear-gradient(90deg, #23a6d5, #23d5ab); 
   background-clip: text;
-  background-size: 200% 200%;
+  background-size: 100% 100%;
   background-position: 100% 80%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  // color: #23d5ab;
-  width: 50vw;
-  left: 20vw;
-  top: 10%;
+  width: 40vw;
+  left: 10vw;
+  bottom: 40%;
+  text-align: right;
+  max-height: 60%;
+  padding-top: auto;
 }
 
-.experience-long-description {
+.experience-description-container {
   position: absolute;
   color: white;
-  width: 40vw;
-  left: 40vw;
+  width: 25vw;
+  left: 50vw;
+  padding-left: 1rem;
+  top: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 80%;
+}
+
+.experience-description {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
