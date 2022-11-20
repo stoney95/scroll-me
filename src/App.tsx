@@ -15,35 +15,21 @@ import SkillsPlane from './components/SkillsPlane';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 
 function App() {
-  const videoRef = createRef<HTMLVideoElement>()
   const labelPerson = createRef<HTMLDivElement>()
   const labelSkills = createRef<HTMLDivElement>()
   const labelExperience = createRef<HTMLDivElement>()
   const labelContact = createRef<HTMLDivElement>()
 
+  const panelScroll = createRef<HTMLDivElement>()
   const panelPerson = createRef<HTMLDivElement>()
   const panelSkills = createRef<HTMLDivElement>()
   const panelExperience = createRef<HTMLDivElement>()
   const panelContact = createRef<HTMLDivElement>()
-
-  useEffect(() => {
-    function updateVideo() {
-      const scrollPerenctage = window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight)
-      const video = videoRef.current;
-      
-      if (video !== null) {
-        const time = video.duration * scrollPerenctage * 0.9
-        video.currentTime = time
-      }
-    }
-    
-    document.addEventListener("scroll", updateVideo)
-    return () => document.removeEventListener("scroll", updateVideo)
-  }, [])
 
   const panelsWithLabels = [
     {label: labelPerson, panel: panelPerson},
@@ -64,25 +50,22 @@ function App() {
         <Label text="Contact" ref={labelContact} panel={panelContact}/>
       </div>
       <div className="panels">
-        <Panel className="scroll">
-          <Scroll/>
+        <Panel ref={panelScroll} className="scroll">
+          <Scroll panelRef={panelScroll} stopPanelRef={panelPerson}/>
         </Panel>
         <Panel ref={panelPerson} className="panel person">
           <Person panelRef={panelPerson}/>
         </Panel>
         <Panel ref={panelSkills} className="skills">
-          <SkillsPlane panelRef={panelSkills}/>
+          {/* <SkillsPlane panelRef={panelSkills}/> */}
         </Panel>
         <Panel ref={panelExperience} className="experience">
-          <Experience panelRef={panelExperience} />
+          {/* <Experience panelRef={panelExperience} /> */}
         </Panel>
         <Panel ref={panelContact} className="contact">
-          <Contact />
+          {/* <Contact /> */}
         </Panel>
       </div>
-      {/* <video className="video" muted preload="auto" ref={videoRef}>
-        <source src="waves.mp4" type="video/mp4"/>
-      </video> */}
     </div>
   );
 }

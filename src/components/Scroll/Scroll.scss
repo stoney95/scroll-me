@@ -8,7 +8,36 @@
     padding: 20px;
     -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
+    position: absolute;
+    top: 70vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
   }
+
+.title {
+  @media only screen and (max-width: 600px) {
+      width: 80vw;
+  }
+  
+  left: 10vw;
+  font-size: 5vmax;
+  width: 60vw;
+  position: absolute;
+  top: 20vh;
+}
+
+.title-description {
+  @media only screen and (max-width: 600px) {
+    width: 80vw;
+  }
+
+  position: absolute;
+  left: 10vw;
+  top: 40vh;
+  width: 60vw;
+  font-size: 2vmax;
+  text-align: left;
+}
   
   .scroll-text {
     font-size: 30pt;
@@ -21,10 +50,15 @@
   }
   
   .scroll-triangle {
-    width: 30px;
-    height: 30px;
-    border-right: 5px solid;
-    border-bottom: 5px solid;
+    @media screen and (max-width: 600px) {
+      width: 30px;
+      height: 30px;
+    }
+
+    width: 45px;
+    height: 45px;
+    border-right: 7px solid;
+    border-bottom: 7px solid;
     /* border-color: rgb(0, 235, 252); */
     transform: rotate(45deg);
     border-image: linear-gradient(60deg, #23a6d5, #23d5ab) 1;

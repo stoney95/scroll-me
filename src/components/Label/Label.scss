@@ -2,8 +2,7 @@
     border-radius: 10px;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(30px);
-    /* background-color: rgba(0, 235, 252, 0.379); */
-    /* #ee7752, #e73c7e, */
+    box-sizing: border-box;
     background-image: linear-gradient(90deg, rgba(97, 97, 97, 0), #23d5ab, #23a6d5);
     color: rgb(255, 255, 255);
     background-size: 400%;

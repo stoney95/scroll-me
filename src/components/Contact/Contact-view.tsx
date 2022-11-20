@@ -78,6 +78,8 @@ function rotateElement(ev: MouseEvent<HTMLDivElement>, ref: RefObject<HTMLDivEle
       rotateY: `${yRotation}deg`,
       backgroundPosition: `${totalXPercent}% ${totalYPercent}%`,
       backgroundImage: "radial-gradient(circle at center, #23a6d5 0, #23a5d557 25%, transparent 40%)",
+      cursor: "pointer",
+    //   backgroundImage: "radial-gradient(circle at center, #ee7652bd 0, #ee765257 25%, transparent 40%)",
     //   color: "white"
     })
 }

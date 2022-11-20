@@ -1,20 +1,18 @@
-import {FC, RefObject} from "react";
+import {FC, RefObject, useEffect, useLayoutEffect, useRef} from "react";
 
 import "./Person.scss";
 
 interface PersonViewProps {
     imageRef: RefObject<HTMLDivElement>;
     textRef: RefObject<HTMLDivElement>;
-    titleRef: RefObject<HTMLDivElement>;
 }
 
 
-const PersonView: FC<PersonViewProps> = ({imageRef, titleRef, textRef}) => {
-        return <>
+const PersonView: FC<PersonViewProps> = ({imageRef, textRef}) => {
+    return <>
         <div ref={imageRef} className="person-picture-container">
             <img className="person-picture" src="profile-picture.jpg"/>
         </div>
-        <div ref={titleRef}  className="person-title">Hi, I'm <span className="highlighted">Simon</span></div>
         <div ref={textRef} className="person-description">
             ❤️ A passionate <span className='highlighted'>MLOps Engineer</span> who loves python, data and automation. 
             🔨 I build <span className='highlighted'>productive</span> ML systems and <span className='highlighted'>end-to-end</span> data products.

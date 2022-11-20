@@ -82,7 +82,7 @@ function changeContainerOrientation(obj: HTMLDivElement, tl: GSAPTimeline, angle
 }
 
 export function createOrbitAnimations(refsWithTimelines: RefWithTimeline[]) {
-    const radiusInRem = 20;
+    const radiusInRem = 15;
     const degrees = range(0, 35).map(x => x * 10)
     const degreePerAnimationStep = degrees[1] - degrees[0];
     const angleBetweenObjects = 360 / refsWithTimelines.length;

@@ -1,18 +1,33 @@
 .person-title {
-    font-size: 50pt;
+    @media only screen and (max-width: 600px) {
+        left: 10vw;
+        width: 80vw;
+    }
+    
+    font-size: 5vw;
+    left: 50vw;
+    width: 40vw;
     position: absolute;
     top: 20vh;
-    left: 50vw;
-  }
+}
 
 .person-picture-container {
+    @media only screen and (max-width: 600px) {
+        width: 75vw;
+        height: 75vw;
+        bottom: 50vh;
+        translate: transformY(0);
+    }
+
     position: absolute;
     width: 35vw;
     height: 35vw;
     border-radius: 50%;
     border: 3px solid #23a6d5;
     overflow: hidden;
-    left: 10vw;
+    left: 12.5vw;
+    bottom: 45vh;
+    transform: translateY(50%);
 }
 
 .person-picture {
@@ -21,7 +36,18 @@
 }
 
 .person-description {
+    @media only screen and (max-width: 600px) {
+        width: 80vw;
+        bottom: 18vh;
+        left: 10vw;
+        transform: translateY(0);
+        text-align: center;
+    }
+
     position: absolute;
     left: 50vw;
     width: 35vw;
+    transform: translateY(50%);
+    height: fit-content;
+    bottom: 45vh;
 }
