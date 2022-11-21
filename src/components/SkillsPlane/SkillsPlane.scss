@@ -1,4 +1,7 @@
 .skill-container {
+    @media only screen and (max-width: 600px) {
+        padding-top: 10vh;
+    }
     padding-top: 30vh;
     padding-left: 3rem;
     padding-right: 3rem;
@@ -8,14 +11,13 @@
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
-    // background-color: rgba(28, 99, 85, 0.05);
-    // box-shadow: 0px 0px 15px 2px black;
-    // border: 1px solid;
     position: relative;
     grid-auto-rows: auto;
 }
 
 .skill-area {
+    
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -32,12 +34,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-
-
-    // position: absolute;
-    // bottom: 0px;
-    // font-size: 14px;
-    // transform: translate(-50%, 100%)
 }
 
 .y-axis-lable {
@@ -49,6 +45,10 @@
 }
 
 .level-description {
+    @media only screen and (max-width: 600px) {
+        width: 100%
+    }
+
     text-align: start;
     font-size: 10px;
     width: 30%;
