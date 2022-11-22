@@ -3,5 +3,6 @@ export type Skill = {
     column: {
         start: number;
         end: number;
-    }
+    },
+    containerAnimation: GSAPTween | undefined
 }

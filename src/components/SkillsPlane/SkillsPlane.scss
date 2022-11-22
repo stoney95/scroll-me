@@ -7,7 +7,29 @@
     padding-right: 3rem;
 }
 
+.plane-container {
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.plane-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.plane-container-scroll {
+    @media only screen and (max-width: 600px) {
+        width: 400%;
+    }
+
+    width: 100%;
+}
+
 .plane{
+    overflow: hidden;
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -16,8 +38,6 @@
 }
 
 .skill-area {
-    
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -36,7 +56,7 @@
     width: 100%;
 }
 
-.y-axis-lable {
+.y-axis-label {
     position: absolute;
     left: -10px;
     top: 50%;

@@ -117,7 +117,7 @@ const SkillsPlaneContainer: FC<SkillsProps> = ({panelRef}) => {
         animateApperiance(refs, panelRef);
     })
 
-    return (<SkillsPlaneView skills={groupedSkills} areas={areas} levels={levels}/>)
+    return (<SkillsPlaneView skills={groupedSkills} areas={areas} levels={levels} panelRef={panelRef}/>)
 }
 
 export default SkillsPlaneContainer;

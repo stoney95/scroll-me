@@ -1,7 +1,10 @@
 import { RefObject, useEffect, useRef } from "react";
 import { Type } from "typescript";
 
-function useAnimation<T>(ref: RefObject<T>, animation: (obj: T) => void) {
+function useAnimation<T>(
+    ref: RefObject<T>, 
+    animate: (obj: T) => void,
+) {
     const didAnimate = useRef(false);
     useEffect(() => {
         const object = ref.current;
@@ -9,7 +12,7 @@ function useAnimation<T>(ref: RefObject<T>, animation: (obj: T) => void) {
         if (didAnimate.current) return;
 
         didAnimate.current = true;
-        animation(object);
+        animate(object);
     }, [ref])
 }
 
