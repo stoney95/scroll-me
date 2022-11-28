@@ -5,20 +5,40 @@
     padding-top: 30vh;
     padding-left: 3rem;
     padding-right: 3rem;
+    position: relative;
+}
+
+.plot-container {
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
+    width: 90%;
+    
+    display: flex;
+    flex-direction: column;
+    
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+
+
 }
 
 .plane-container {
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+.plane-container-border {
+    border: 1px solid black;
 }
 
 .plane-container::-webkit-scrollbar {
     display: none;
 }
-
-
 
 .plane-container-scroll {
     @media only screen and (max-width: 600px) {
@@ -29,11 +49,8 @@
 }
 
 .plane{
-    overflow: hidden;
-    width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
-    position: relative;
     grid-auto-rows: auto;
 }
 
@@ -56,12 +73,12 @@
     width: 100%;
 }
 
-.y-axis-label {
-    position: absolute;
-    left: -10px;
-    top: 50%;
-    font-size: 14px;
-    transform: translate(-100%, -50%)
+.x-axis-label-text {
+    border-bottom: 3px solid;
+    border-image: linear-gradient(90deg, #23a6d5, #23d5ab) 1;
+    // font-weight: bold;
+    padding-left: .5em;
+    padding-right: .5em;
 }
 
 .level-description {
@@ -81,13 +98,13 @@
     padding-bottom: 5px;
 }
 
-.top-to-bottom {
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-}
+// .top-to-bottom {
+//     border-left: 3px solid transparent;
+//     border-right: 3px solid transparent;
+// }
 
-.top-to-bottom:hover {
-    border-left: 3px solid;
-    border-right: 3px solid;
-    border-image: linear-gradient(#23a6d5, #23d5ab) 1;
-}
+// .top-to-bottom:hover {
+//     border-left: 3px solid;
+//     border-right: 3px solid;
+//     border-image: linear-gradient(#23a6d5, #23d5ab) 1;
+// }
