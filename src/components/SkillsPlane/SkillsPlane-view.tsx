@@ -76,6 +76,8 @@ const SkillsPlaneView: FC<ISkillPlaneView> = ({skills, areas, levels, panelRef})
     const [containerAnimation, setContainerAnimation] = useState<GSAPTween>();
 
     useEffect(() => {
+        if (window.innerWidth > 600) return;
+
         if (planeRef.current === null) return
         if (planeContainerRef.current === null) return
         if (xAxisLabelContainerRef.current === null) return
