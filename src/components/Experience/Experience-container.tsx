@@ -70,6 +70,8 @@ const addRefsToExperiences = (experiences: Map<number, Map<number, ExperienceVie
                 ...month,
                 titleRef: createRef<HTMLDivElement>(),
                 descriptionRef: createRef<HTMLDivElement>(),
+                descriptionContainerRef: createRef<HTMLDivElement>(),
+                descriptionParagraphRef: createRef<HTMLParagraphElement>(),
                 labelRef: createRef<HTMLDivElement>(),
                 circleRef: createRef<HTMLDivElement>(),
             }
@@ -98,19 +100,37 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
 
     useEffect(() => {
         const tl = gsap.timeline();
+        const detailsHeight = "50vh"
 
         yearsWithRef.forEach(year => {
+            const experiencesInYear = experiencesWithRefs.get(year.year)
+            
+            experiencesInYear?.forEach((experience) => {
+                if (experience.descriptionContainerRef.current === null) return;
+                if (experience.descriptionParagraphRef.current === null) return;
+                
+                const descriptionContainerHeight = experience.descriptionContainerRef.current?.getBoundingClientRect().height;
+                const descriptionParagraphHeight = experience.descriptionParagraphRef.current?.getBoundingClientRect().height;
+
+                const yPercent = Math.max(0, (descriptionParagraphHeight - descriptionContainerHeight) / descriptionParagraphHeight * 100);
+                if (experience.viewPercent === undefined) experience.viewPercent = yPercent;
+            })
+            
             tl.fromTo(year.ref.current, 
                 {height: "0vh"},
-                {height: "40vh"},
+                {height: detailsHeight},
             ).addLabel(`detailsExpanded${year.year}`)
-
-            const experiencesInYear = experiencesWithRefs.get(year.year)
+                
 
             experiencesInYear?.forEach((experience, month) => {
-                tl.fromTo(experience.circleRef.current, 
-                    {border: "0.0em solid rgba(35, 213, 171, 0.0)"},
-                    {border: "0.7em solid rgba(35, 213, 171, 0.99)", duration: 0.25}
+                const circleWidth = experience.circleRef.current ? experience.circleRef.current.getBoundingClientRect().width : 4;
+                tl.to(experience.circleRef.current, 
+                    {
+                        boxShadow: `0px 0px 15px 1px rgba(35, 213, 171, 0.99), inset 0px 0px 0px ${circleWidth / 4}px rgba(35, 213, 171, 1)`,
+                        scale: 1.5,
+                        duration: 0.25,
+                        ease: "none"
+                    },
                 ).addLabel(`circleFocused${year}${month}`)
 
                 tl.fromTo(experience.titleRef.current,
@@ -120,8 +140,8 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                 )
                   
                 tl.fromTo(experience.labelRef.current,
-                    {top: `40vh`},
-                    {top: "60%", duration: 1}  
+                    {translateY: detailsHeight, opacity: 0, duration: 1},
+                    {translateY: 0, opacity: 1}  
                 ).addLabel(`labelsInPlace${year}${month}`)
             
                 tl.fromTo(experience.descriptionRef.current,
@@ -129,6 +149,16 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                     {height: "100%", duration: 1},
                     "<25%"  
                 ).addLabel(`descriptionInPlace${year}${month}`)
+
+                if (experience.viewPercent !== undefined) {
+                    console.log(experience.viewPercent)
+                    tl.to(experience.descriptionParagraphRef.current,
+                        {
+                            yPercent: -experience.viewPercent,
+                            duration: experience.viewPercent === 0 ? 0 : experience.viewPercent / 100 + 1
+                        }
+                    )
+                }
             
                 tl.to(experience.labelRef.current,
                     {opacity: 0.0, duration:0.5}  
@@ -145,7 +175,13 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                 )
 
                 tl.to(experience.circleRef.current,
-                    {border: "0.0em solid rgba(35, 213, 171, 0.0)", duration: 0.3}
+                    // {border: "0.7em solid transparent", duration: 0.3}
+                    {
+                        // background: "black",
+                        scale: 1,
+                        boxShadow: "0px 0px 0px 0px black, inset 0px 0px 0px 0px black", 
+                        duration: 0.3
+                    }
                 ).addLabel(`circleFocusGone${year}${month}`)
             })
 

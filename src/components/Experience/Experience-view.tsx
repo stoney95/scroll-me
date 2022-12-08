@@ -12,19 +12,19 @@ function addExperienceDetails(experiences: Map<number, Map<number, ExperienceVie
     const experiencesArray = Array.from(experiencesInYear)
     return <>{
         experiencesArray.map((experience) => {
-            return <>
+            return <div className="experience-detail">
                 <div ref={experience.titleRef} className='experience-title'>
                     {experience.title}
                 </div>
                 <div ref={experience.labelRef} className='experience-label-container'>
                     {experience.labels.map(label => <div className='experience-label'>{label}</div>)}
                 </div>
-                <div className="experience-description-container">
+                <div ref={experience.descriptionContainerRef} className="experience-description-container">
                     <div ref={experience.descriptionRef} className='experience-description'>
-                        <p>{experience.description}</p>
+                        <p ref={experience.descriptionParagraphRef}>{experience.description}</p>
                     </div>
                 </div>
-            </>
+            </div>
         })
     }</>
 }
@@ -62,7 +62,9 @@ const ExperienceView: FC<ExperienceViewProps> = ({years, months, experiences}) =
       <div className='experience-months'>
         {months.map(month => {
             return <div className='experience-month-container'>
-                {Object.keys(Months)[Object.values(Months).indexOf(month)]}
+                <span className="experience-month-label">
+                    {Object.keys(Months)[Object.values(Months).indexOf(month)]}
+                </span>
             </div>
         })}
       </div>

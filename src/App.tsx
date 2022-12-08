@@ -60,7 +60,7 @@ function App() {
           <SkillsPlane panelRef={panelSkills}/>
         </Panel>
         <Panel ref={panelExperience} className="experience">
-          {/* <Experience panelRef={panelExperience} /> */}
+          <Experience panelRef={panelExperience} />
         </Panel>
         <Panel ref={panelContact} className="contact">
           {/* <Contact /> */}

@@ -38,7 +38,10 @@ export interface ExperienceViewDataWithRef extends ExperienceViewData{
     circleRef: RefObject<HTMLDivElement>;
     titleRef: RefObject<HTMLDivElement>;
     descriptionRef: RefObject<HTMLDivElement>;
+    descriptionContainerRef: RefObject<HTMLDivElement>;
     labelRef: RefObject<HTMLDivElement>;
+    descriptionParagraphRef: RefObject<HTMLParagraphElement>;
+    viewPercent?: number;
 }
 
 export interface YearWithRef {
