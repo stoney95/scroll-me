@@ -82,7 +82,7 @@ function changeContainerOrientation(obj: HTMLDivElement, tl: GSAPTimeline, angle
 }
 
 export function createOrbitAnimations(refsWithTimelines: RefWithTimeline[]) {
-    const radiusInRem = 15;
+    const radiusInViewWidth = 20;
     const degrees = range(0, 35).map(x => x * 10)
     const degreePerAnimationStep = degrees[1] - degrees[0];
     const angleBetweenObjects = 360 / refsWithTimelines.length;
@@ -97,7 +97,7 @@ export function createOrbitAnimations(refsWithTimelines: RefWithTimeline[]) {
         degrees.forEach(deg => {
             const {xOffsetRight: iconXOffsetRight, xOffsetLeft: iconXOffsetLeft} = calcIconXOffsetsToContainer(obj, icon)
             const angle = (deg + angleOffset) % 360;
-            const offset = getOffsetFromCenter(angle, radiusInRem)
+            const offset = getOffsetFromCenter(angle, radiusInViewWidth)
             const offsetInPixel = offsetToPixel(offset);
             
             let flexDirection = "row"
@@ -108,7 +108,7 @@ export function createOrbitAnimations(refsWithTimelines: RefWithTimeline[]) {
             }
     
             if (isChangingSide(angle)) {
-                changeContainerOrientation(obj, timeline, angle, degreePerAnimationStep, radiusInRem, lastIconXOffset, flexDirection);
+                changeContainerOrientation(obj, timeline, angle, degreePerAnimationStep, radiusInViewWidth, lastIconXOffset, flexDirection);
             }
     
             timeline.to(obj, {

@@ -23,11 +23,13 @@ export function matchRefsToTimelines(contactsWithRefs: ContactWithRef[]) {
 
 export function offsetToPixel(offset: {x:number, y:number}) {
     return {
-      x: convertRemToPixels(offset.x),
-      y: convertRemToPixels(offset.y)
+      x: convertViewWidthToPixels(offset.x),
+      y: convertViewWidthToPixels(offset.y)
     }
 }
 
-export function convertRemToPixels(rem: number) {    
-    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+export function convertViewWidthToPixels(viewWidth: number) {    
+    // return viewWidth * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const windowWidth = window.innerWidth;
+    return (viewWidth / 100) * windowWidth
 }

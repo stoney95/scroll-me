@@ -5,7 +5,7 @@ import { ContactWithRef } from "./types";
 
 import "./Contact.scss";
 
-interface ContactViewProps {
+export interface ContactViewProps {
     contacts: ContactWithRef[];
     hoverTextRef: RefObject<HTMLDivElement>;
     clickTextRef: RefObject<HTMLDivElement>;
@@ -79,6 +79,7 @@ function rotateElement(ev: MouseEvent<HTMLDivElement>, ref: RefObject<HTMLDivEle
       backgroundPosition: `${totalXPercent}% ${totalYPercent}%`,
       backgroundImage: "radial-gradient(circle at center, #23a6d5 0, #23a5d557 25%, transparent 40%)",
       cursor: "pointer",
+      boxShadow: "0px 0px 10px 0px rgba(200, 200, 200, 0.8)"
     //   backgroundImage: "radial-gradient(circle at center, #ee7652bd 0, #ee765257 25%, transparent 40%)",
     //   color: "white"
     })
@@ -105,6 +106,7 @@ function rotateElementToZero(ref: RefObject<HTMLDivElement>) {
       rotateY: `0deg`,
       rotateX: `0deg`,
       backgroundImage: "radial-gradient(circle at center, transparent 0, transparent 15%, transparent 30%)",
+      boxShadow: "0px 0px 0px 0px rgba(200, 200, 200, 0)"
     //   color: "transparent"
     })
 

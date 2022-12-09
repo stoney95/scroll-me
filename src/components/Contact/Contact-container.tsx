@@ -5,6 +5,7 @@ import {ContactContext} from "../../context/data/contact"
 import {default as ContactView} from "./Contact-view";
 import { addRefsToContacts, matchRefsToTimelines } from './data-transformations';
 import { createOrbitAnimations, toOrbitMode, toPauseMode } from './animations';
+import { MobileContactView } from './mobile/MobileContact-view';
 
 
 const ContactContainer: FC = () => {
@@ -20,6 +21,11 @@ const ContactContainer: FC = () => {
         createOrbitAnimations(refsWithTimelines)
     })
 
+    if ( window.innerWidth < 600 ) {
+        return <MobileContactView contacts={contactsWithRefs} />
+    }
+
+    
     return <ContactView 
         contacts={contactsWithRefs}
         hoverTextRef={hoverTextRef}

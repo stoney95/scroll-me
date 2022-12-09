@@ -63,7 +63,7 @@ function App() {
           <Experience panelRef={panelExperience} />
         </Panel>
         <Panel ref={panelContact} className="contact">
-          {/* <Contact /> */}
+          <Contact />
         </Panel>
       </div>
     </div>

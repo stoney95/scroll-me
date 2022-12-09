@@ -13,7 +13,11 @@
     transform: translate(-100%, -50%); //TODO: required?
 }
 
-.contact-hint {
+.contact-hint{
+    @media screen and (max-width: 600px) {
+        font-size: 5vw;
+    }
+
     font-size: 30pt;
     position: absolute;
     top: 50vh;

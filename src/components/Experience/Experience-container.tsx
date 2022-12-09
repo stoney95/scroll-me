@@ -151,7 +151,6 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                 ).addLabel(`descriptionInPlace${year}${month}`)
 
                 if (experience.viewPercent !== undefined) {
-                    console.log(experience.viewPercent)
                     tl.to(experience.descriptionParagraphRef.current,
                         {
                             yPercent: -experience.viewPercent,
