@@ -7,7 +7,13 @@ export type ContactInfo = {
 }
 
 export interface ContactWithRef extends ContactInfo {
-    ref: RefObject<HTMLDivElement>
+    refs: ContactRefs
+}
+
+export interface ContactRefs {
+    container: RefObject<HTMLDivElement>;
+    element: RefObject<HTMLDivElement>;
+    text: RefObject<HTMLDivElement>;
 }
 
 export interface RefsWithTimelines {

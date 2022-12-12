@@ -19,9 +19,9 @@ const contactInfos = [
         link: "https://github.com/stoney95"
     },
     {
-        text: "see my hometown",
-        img: "location.svg",
-        link: "https://goo.gl/maps/Z6yTa4vnMAQMNWos6"
+        text: "download my CV",
+        img: "download.svg",
+        link: "resume-v3.pdf"
     },
     {
         text: "give feedback",
@@ -29,10 +29,10 @@ const contactInfos = [
         link: "https://github.com/stoney95/scroll-me/issues"
     },
     {
-        text: "download my CV",
-        img: "download.svg",
-        link: ""
-    }
+        text: "visit my hometown",
+        img: "location.svg",
+        link: "https://goo.gl/maps/Z6yTa4vnMAQMNWos6"
+    },
 ]
 
 export const ContactContext = createContext<Array<ContactInfo>>(contactInfos)

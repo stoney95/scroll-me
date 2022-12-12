@@ -5,7 +5,7 @@ import {ContactContext} from "../../context/data/contact"
 import {default as ContactView} from "./Contact-view";
 import { addRefsToContacts, matchRefsToTimelines } from './data-transformations';
 import { createOrbitAnimations, toOrbitMode, toPauseMode } from './animations';
-import { MobileContactView } from './mobile/MobileContact-view';
+import { default as MobileContactView } from './mobile';
 
 
 const ContactContainer: FC = () => {
@@ -21,18 +21,11 @@ const ContactContainer: FC = () => {
         createOrbitAnimations(refsWithTimelines)
     })
 
-    if ( window.innerWidth < 600 ) {
-        return <MobileContactView contacts={contactsWithRefs} />
-    }
-
+    // if ( window.innerWidth < 600 ) {
+    //     return <MobileContactView contacts={contactsWithRefs} />
+    // }
     
-    return <ContactView 
-        contacts={contactsWithRefs}
-        hoverTextRef={hoverTextRef}
-        clickTextRef={clickTextRef}
-        toOrbitMode={() => toOrbitMode(refsWithTimelines, hoverTextRef, clickTextRef)}
-        toPauseMode={() => toPauseMode(refsWithTimelines, hoverTextRef, clickTextRef)}
-    />
+    return <MobileContactView contacts={contactsWithRefs} />
 }
 
 export default ContactContainer;

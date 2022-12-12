@@ -2,82 +2,83 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
     height: 100%;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 .mobile-contact-grid {
+    @media screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 80vw;
-    height: 60vh;
-    justify-items: center;
+    column-gap: 5vw;
     align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 60vh;
 }
 
 .mobile-contact-container {
     width: 100%;
-    // height: 100%;
     overflow: visible;
     display: flex;
     justify-content: center;
     perspective: 10em;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
-.mobile-contact-inactive {
-    padding: 5vw;
+.mobile-contact {
     box-sizing: border-box;
-}
-
-.mobile-contact-active {
-    box-sizing: border-box;
-    padding: 5vw;
+    padding: calc(min(2vw, 10px));
     width: 100%;
     display: flex;
     flex-direction: row;
     background-size: 200% 200%;
-    // background-position: 20% 50%;
     background-image: radial-gradient(circle at center, #23a6d5 0, #23a5d557 25%, transparent 40%);
+    box-shadow: 0px 0px 10px 0px rgba(200, 200, 200, 0.8);
     justify-content: space-between;
-    border-radius: 5vw;
+    border-radius: 100vw;
 }
 
 .reversed {
     flex-direction: row-reverse;
+    background-position: 80% 50%;
+    transform: rotateY(5deg);
 }
 
 .mobile-contact-icon-border {
-    height: 10vmin;
-    width: 10vmin;
-    border: 0.25em solid #23a6d5;
+    height: calc(min(10vmin, 50px));
+    width: calc(min(10vmin, 50px));
+    border: calc(min(0.5vmin, 5px)) solid white;
     border-radius: 100%;
     pointer-events: none;
-    padding: 1em;
+    padding: calc(min(2vw, 10px));
     flex-shrink: 0;
+    color: rgba(35, 165, 213, 0.71)
 }
 
 .mobile-contact-icon {
     width: 100%;
 }
 
-.mobile-contact-inactive > .mobile-contact-text {
-    display: none;
-}
-
-.mobile-contact-active > .mobile-contact-text {
-    font-size: 7vw;
+.mobile-contact-text {
+    font-size: calc(min(5vw, 30px));
+    width: 100%;
     padding-left: 2vw;
     padding-right: 2vw;
     pointer-events: none;
-    color: white;
+    color: black;
     align-self: center;
-    width: 100%
 }
 
 .left {
-    text-align: right;
+    text-align: left;
 }
 
 .right {
-    text-align: left;
+    text-align: right;
 }

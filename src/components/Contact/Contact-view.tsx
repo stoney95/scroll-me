@@ -32,19 +32,19 @@ const ContactView: FC<ContactViewProps> = ({contacts, hoverTextRef, clickTextRef
 }
 
 const ContactInfoView: FC<ContactInfoViewProps> = ({props, toOrbitMode, toPauseMode}) => {
-    const {ref, link, text, img} = props
+    const {refs, link, text, img} = props
     return <div 
-        onMouseMove={(ev) => rotateElement(ev, ref)} 
+        onMouseMove={(ev) => rotateElement(ev, refs.container)} 
         onMouseLeave={() => {
-            rotateElementToZero(ref);
+            rotateElementToZero(refs.container);
             toOrbitMode();
         }}
         onMouseEnter={(ev) => {
             toPauseMode();
-            rotateElement(ev, ref);
+            rotateElement(ev, refs.container);
         }}
         onClick={() => openInNewTab(link)}
-        ref={ref} 
+        ref={refs.container} 
         className="contact-container"
     >
         <div className="contact-icon-border">

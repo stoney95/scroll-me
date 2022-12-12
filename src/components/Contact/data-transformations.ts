@@ -7,7 +7,11 @@ export function addRefsToContacts(contacts: ContactInfo[]) {
     return contacts.map(contact => {
         return {
             ...contact,
-            ref: createRef<HTMLDivElement>()
+            refs: {
+                container: createRef<HTMLDivElement>(),
+                element: createRef<HTMLDivElement>(),
+                text: createRef<HTMLDivElement>()
+            }
         }
     })
 }
@@ -15,7 +19,7 @@ export function addRefsToContacts(contacts: ContactInfo[]) {
 export function matchRefsToTimelines(contactsWithRefs: ContactWithRef[]) {
     return contactsWithRefs.map(contactWithRef => {
         return {
-            ref: contactWithRef.ref,
+            ref: contactWithRef.refs.container,
             timeline: gsap.timeline({repeat: -1})
         }
     })
@@ -23,13 +27,12 @@ export function matchRefsToTimelines(contactsWithRefs: ContactWithRef[]) {
 
 export function offsetToPixel(offset: {x:number, y:number}) {
     return {
-      x: convertViewWidthToPixels(offset.x),
-      y: convertViewWidthToPixels(offset.y)
+      x: convertViewMaxToPixels(offset.x),
+      y: convertViewMaxToPixels(offset.y)
     }
 }
 
-export function convertViewWidthToPixels(viewWidth: number) {    
-    // return viewWidth * parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const windowWidth = window.innerWidth;
-    return (viewWidth / 100) * windowWidth
+export function convertViewMaxToPixels(viewWidth: number) {    
+    const windowMax = Math.max(window.innerWidth, window.innerHeight);
+    return (viewWidth / 100) * windowMax
 }
