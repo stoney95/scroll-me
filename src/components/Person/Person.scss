@@ -15,7 +15,7 @@
     @media only screen and (max-width: 600px) {
         width: 75vw;
         height: 75vw;
-        bottom: 50vh;
+        bottom: 60vh;
         translate: transformY(0);
     }
 
@@ -25,7 +25,7 @@
     border-radius: 50%;
     border: 3px solid #23a6d5;
     overflow: hidden;
-    left: 12.5vw;
+    right: 12.5vw;
     bottom: 45vh;
     transform: translateY(50%);
 }
@@ -45,7 +45,8 @@
     }
 
     position: absolute;
-    left: 50vw;
+    left: 10vw;
+    text-align: right;
     width: 35vw;
     transform: translateY(50%);
     height: fit-content;

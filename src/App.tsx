@@ -31,6 +31,8 @@ function App() {
   const panelExperience = createRef<HTMLDivElement>()
   const panelContact = createRef<HTMLDivElement>()
 
+  const title = createRef<HTMLHeadingElement>();
+
   const panelsWithLabels = [
     {label: labelPerson, panel: panelPerson},
     {label: labelSkills, panel: panelSkills},
@@ -51,10 +53,10 @@ function App() {
       </div>
       <div className="panels">
         <Panel ref={panelScroll} className="scroll">
-          <Scroll panelRef={panelScroll} stopPanelRef={panelPerson}/>
+          <Scroll panelRef={panelScroll} stopPanelRef={panelPerson} titleRef={title}/>
         </Panel>
         <Panel ref={panelPerson} className="panel person">
-          <Person panelRef={panelPerson}/>
+          <Person panelRef={panelPerson} titleRef={title}/>
         </Panel>
         <Panel ref={panelSkills} className="skills">
           <SkillsPlane panelRef={panelSkills}/>

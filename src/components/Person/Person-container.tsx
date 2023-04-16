@@ -6,9 +6,10 @@ import {default as PersonView} from "./Person-view";
 
 interface PersonProps {
     panelRef: RefObject<HTMLDivElement>;
+    titleRef: RefObject<HTMLHeadingElement>;
 }
 
-const PersonContainer: FC<PersonProps> = ({panelRef}) => {
+const PersonContainer: FC<PersonProps> = ({panelRef, titleRef}) => {
     const image = useRef<HTMLDivElement>(null);
     const text = useRef<HTMLDivElement>(null);
     
@@ -16,6 +17,9 @@ const PersonContainer: FC<PersonProps> = ({panelRef}) => {
         const textHeight = textObj.getBoundingClientRect().height;
         const windowHeight = window.innerHeight;
 
+        const titleWidth = titleRef.current?.getBoundingClientRect().width;
+
+        gsap.set(textObj, {width: titleWidth})
         gsap.from(textObj,
             {
                 // bottom: `-${textHeight}px`,

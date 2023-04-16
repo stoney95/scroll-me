@@ -7,12 +7,12 @@ import useAnimation from '../../hooks/useAnimation';
 interface ScrollProps {
     panelRef: RefObject<HTMLDivElement>;
     stopPanelRef: RefObject<HTMLDivElement>;
+    titleRef: RefObject<HTMLHeadingElement>;
 }
 
-const ScrollContainer: FC<ScrollProps> = ({panelRef, stopPanelRef}) => {
+const ScrollContainer: FC<ScrollProps> = ({panelRef, stopPanelRef, titleRef}) => {
     const scrollContainer = useRef<HTMLDivElement>(null);
     const scrollTriangle = useRef<HTMLDivElement>(null);
-    const title = useRef<HTMLHeadingElement>(null);
     const scrollExplanation = useRef<HTMLParagraphElement>(null);
 
     const animateTitle = (title: HTMLHeadingElement) => {
@@ -42,10 +42,10 @@ const ScrollContainer: FC<ScrollProps> = ({panelRef, stopPanelRef}) => {
     }
 
     const animateExplanation = (explanation: HTMLParagraphElement) => {
-        if (title.current === null) return;
+        if (titleRef.current === null) return;
         if (scrollContainer.current === null) return;
 
-        const titleBottom = title.current.getBoundingClientRect().bottom;
+        const titleBottom = titleRef.current.getBoundingClientRect().bottom;
         const viewHeight = window.innerHeight / 100;
 
         gsap.to(explanation, {
@@ -79,7 +79,7 @@ const ScrollContainer: FC<ScrollProps> = ({panelRef, stopPanelRef}) => {
     }
 
     useAnimation(scrollTriangle, animateTriangle);
-    useAnimation(title, animateTitle);
+    useAnimation(titleRef, animateTitle);
     useAnimation(scrollExplanation, animateExplanation);
 
     useEffect(() => {
@@ -87,7 +87,7 @@ const ScrollContainer: FC<ScrollProps> = ({panelRef, stopPanelRef}) => {
         if (triangle === null) return;
     }, [])
 
-    return <ScrollView ref={scrollContainer} refTriangle={scrollTriangle} refTitle={title} refExplanation={scrollExplanation}/>
+    return <ScrollView ref={scrollContainer} refTriangle={scrollTriangle} refTitle={titleRef} refExplanation={scrollExplanation}/>
 }
 
 export default ScrollContainer;
