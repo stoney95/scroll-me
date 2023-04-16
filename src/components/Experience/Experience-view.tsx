@@ -5,7 +5,7 @@ import { ExperienceViewProps, Months, ExperienceViewDataWithRef } from "./types"
 
 
 
-function addExperienceDetails(experiences: Map<number, Map<number, ExperienceViewDataWithRef>>, year: number) {
+function addExperienceDetails(experiences: Map<number, Map<number, ExperienceViewDataWithRef>>, year: number, mobileView: boolean) {
     const experiencesInYear = experiences.get(year)?.values();
     if (experiencesInYear === undefined) return <></>
 
@@ -14,7 +14,7 @@ function addExperienceDetails(experiences: Map<number, Map<number, ExperienceVie
         experiencesArray.map((experience) => {
             return <div className="experience-detail">
                 <div ref={experience.titleRef} className='experience-title'>
-                    {experience.title}
+                    {mobileView ? experience.titleShort : experience.title}
                 </div>
                 <div ref={experience.labelRef} className='experience-label-container'>
                     {experience.labels.map(label => <div className='experience-label'>{label}</div>)}
@@ -29,7 +29,7 @@ function addExperienceDetails(experiences: Map<number, Map<number, ExperienceVie
     }</>
 }
 
-const ExperienceView: FC<ExperienceViewProps> = ({years, months, experiences}) => {
+const ExperienceView: FC<ExperienceViewProps> = ({years, months, experiences, mobileView}) => {
     return <div className='experience-container'>
     {years.map(({year, ref: yearRef}) => {
         return <div className='experience-year-container'>
@@ -52,7 +52,7 @@ const ExperienceView: FC<ExperienceViewProps> = ({years, months, experiences}) =
                 </div>
             </div>
             <div ref={yearRef} className='experience-details-container'>
-                {addExperienceDetails(experiences, year)}
+                {addExperienceDetails(experiences, year, mobileView)}
             </div>
         
       </div>

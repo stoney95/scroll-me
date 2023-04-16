@@ -6,6 +6,7 @@ import {default as ExperienceView} from "./Experience-view";
 
 import { ExperienceContext } from '../../context/data/experience';
 import {ExperienceByDate, ExperienceProps, ExperienceViewByDate, ExperienceViewData, ExperienceViewDataWithRef} from "./types"
+import mobile from '../Contact/mobile';
 
 const range = (min: number, max: number) => Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
@@ -18,6 +19,7 @@ const transformToViewProps = (experiences: ExperienceByDate[]) => {
             date: exp.date,
             data: {
                 title: exp.data.title,
+                titleShort: exp.data.titleShort,
                 description: exp.data.description,
                 labels: [
                     `${exp.data.scope}`,
@@ -55,7 +57,13 @@ const structureExperiencesByDate = (experiences: ExperienceViewByDate[]) => {
 const sortExperiencesByDate = (experiences: Map<number, Map<number, ExperienceViewData>>) => {
     const sortedByYear = new Map([...experiences].sort());
     sortedByYear.forEach((value, year) => {
-        sortedByYear.set(year, new Map([...value].sort()))
+        sortedByYear.set(year, new Map([...value].sort((a, b) => {
+            const monthA = a[0];
+            const monthB = b[0];
+            console.log(a, monthA)
+            console.log(b, monthB)
+            return monthA - monthB;
+        })))
     })
 
     return sortedByYear;
@@ -98,11 +106,11 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
     const yearsWithRef = completeYearRange.map(year => {return {year: year, ref: createRef<HTMLDivElement>()}})
     const months = range(1,12);
 
+    const mobileView = window.innerWidth <= 600;
+
     useEffect(() => {
         const tl = gsap.timeline();
         const detailsHeight = "50vh"
-
-        const mobileView = window.innerWidth <= 600;
 
         yearsWithRef.forEach(year => {
             const experiencesInYear = experiencesWithRefs.get(year.year)
@@ -232,7 +240,7 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
         })
       }, [])
 
-    return (<ExperienceView years={yearsWithRef} months={months}  experiences={experiencesWithRefs}/>)
+    return (<ExperienceView years={yearsWithRef} months={months}  experiences={experiencesWithRefs} mobileView={mobileView}/>)
 }
 
 export default ExperienceContainer;

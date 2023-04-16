@@ -11,6 +11,7 @@ export type ExperienceDate = {
 
 export type ExperienceData = {
     title: string,
+    titleShort?: string,
     description: string,
     scope: string,
     role: string,
@@ -25,6 +26,7 @@ export type ExperienceByDate = {
 
 export type ExperienceViewData = {
     title: string;
+    titleShort?: string;
     labels: string[];
     description: string;
 }
@@ -52,7 +54,8 @@ export interface YearWithRef {
 export interface ExperienceViewProps {
     years: YearWithRef[],
     months: number[],
-    experiences: Map<number, Map<number, ExperienceViewDataWithRef>>
+    experiences: Map<number, Map<number, ExperienceViewDataWithRef>>,
+    mobileView: boolean,
 }
 
 export enum Months {
