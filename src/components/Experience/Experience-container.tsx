@@ -102,6 +102,8 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
         const tl = gsap.timeline();
         const detailsHeight = "50vh"
 
+        const mobileView = window.innerWidth <= 600;
+
         yearsWithRef.forEach(year => {
             const experiencesInYear = experiencesWithRefs.get(year.year)
             
@@ -110,9 +112,14 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                 if (experience.descriptionParagraphRef.current === null) return;
                 
                 const descriptionContainerHeight = experience.descriptionContainerRef.current?.getBoundingClientRect().height;
+                console.log(experience.descriptionContainerRef.current?.getBoundingClientRect());
                 const descriptionParagraphHeight = experience.descriptionParagraphRef.current?.getBoundingClientRect().height;
 
-                const yPercent = Math.max(0, (descriptionParagraphHeight - descriptionContainerHeight) / descriptionParagraphHeight * 100);
+                const containerStyle = window.getComputedStyle(experience.descriptionContainerRef.current)
+                const containerPadding = parseFloat(containerStyle.getPropertyValue("padding"));
+                const descriptionContainerContentHeight = descriptionContainerHeight - 2 * containerPadding
+
+                const yPercent = Math.max(0, (descriptionParagraphHeight - descriptionContainerContentHeight) / descriptionParagraphHeight * 100);
                 if (experience.viewPercent === undefined) experience.viewPercent = yPercent;
             })
             
@@ -140,14 +147,31 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                 )
                   
                 tl.fromTo(experience.labelRef.current,
-                    {translateY: detailsHeight, opacity: 0, duration: 1},
-                    {translateY: 0, opacity: 1}  
+                    // {translateY: detailsHeight, opacity: 0, duration: 1},
+                    // {translateY: 0, opacity: 1}  
+                    {opacity: 0, duration: 1},
+                    {opacity: 1}  
                 ).addLabel(`labelsInPlace${year}${month}`)
+
+                let boxShadow = ""
+                let boxShadowRemoved = ""
+                if (mobileView) {
+                    boxShadow = "inset 0px 5px 25px -10px rgba(0,0,0,0.5)"
+                    boxShadowRemoved = "inset 0px 5px 25px -10px rgba(0,0,0,0.0)"
+                } else {
+                    boxShadow = "0px 5px 35px -10px rgba(0,0,0,0.5)"
+                    boxShadowRemoved = "0px 5px 35px -10px rgba(0,0,0,0.0)"
+                }
+
+                tl.to(experience.descriptionContainerRef.current,
+                    {
+                        boxShadow: boxShadow,
+                        duration: 0.75
+                    }
+                )
             
                 tl.fromTo(experience.descriptionRef.current,
-                    {height: "0%"},
-                    {height: "100%", duration: 1},
-                    "<25%"  
+                    {opacity: 0, height: "80%"}, {opacity: 1, height: "100%"}, 
                 ).addLabel(`descriptionInPlace${year}${month}`)
 
                 if (experience.viewPercent !== undefined) {
@@ -160,13 +184,21 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
                 }
             
                 tl.to(experience.labelRef.current,
-                    {opacity: 0.0, duration:0.5}  
+                    {opacity: 0.0, duration:0.5},
+                    `+=100%`
                 ).addLabel(`labelsGone${year}${month}`)
             
                 tl.to(experience.descriptionRef.current,
                     {opacity: 0.0, duration: 0.5},
                     `labelsGone${year}${month}-=50%`,
                 ).addLabel(`descriptionGone${year}${month}`)
+
+                tl.to(experience.descriptionContainerRef.current,
+                    {
+                        boxShadow: boxShadowRemoved,
+                        duration: 0.75
+                    }
+                )
             
                 tl.to(experience.titleRef.current,
                     {opacity: 0.0, duration: 0.3},
