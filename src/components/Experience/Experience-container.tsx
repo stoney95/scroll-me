@@ -12,7 +12,7 @@ const range = (min: number, max: number) => Array.from({ length: max - min + 1 }
 
 const transformToViewProps = (experiences: ExperienceByDate[]) => {
     const transformedExperiences = experiences.map((exp) => {
-        let additionalLabels = exp.data.additionalLabels;
+        let additionalLabels = exp.data.tags;
         if (additionalLabels === undefined) additionalLabels = []
 
         return {
@@ -22,11 +22,11 @@ const transformToViewProps = (experiences: ExperienceByDate[]) => {
                 titleShort: exp.data.titleShort,
                 description: exp.data.description,
                 labels: [
+                    `team size: ${exp.data.teamSize}`,
                     `${exp.data.scope}`,
                     `role: ${exp.data.role}`,
-                    `team size: ${exp.data.teamSize}`,
-                    ...additionalLabels
-                ]
+                ],
+                tags: additionalLabels
             }
         }
     })
@@ -163,30 +163,42 @@ const ExperienceContainer: FC<ExperienceProps> = ({panelRef}) => {
 
                 let boxShadow = ""
                 let boxShadowRemoved = ""
+                let scale = 1
                 if (mobileView) {
                     boxShadow = "inset 0px 5px 25px -10px rgba(0,0,0,0.5)"
                     boxShadowRemoved = "inset 0px 5px 25px -10px rgba(0,0,0,0.0)"
+                    scale = 1.03
                 } else {
                     boxShadow = "0px 5px 35px -10px rgba(0,0,0,0.5)"
                     boxShadowRemoved = "0px 5px 35px -10px rgba(0,0,0,0.0)"
+                    scale = 0.97
                 }
 
-                tl.to(experience.descriptionContainerRef.current,
+                tl.fromTo(experience.descriptionContainerRef.current,
                     {
+                        scale: scale,
+                        boxShadow: boxShadowRemoved
+                    },
+                    {
+                        scale: 1.0,
                         boxShadow: boxShadow,
                         duration: 0.75
                     }
-                )
+                ).addLabel(`descriptionBoxVisible${year}${month}`)
             
                 tl.fromTo(experience.descriptionRef.current,
-                    {opacity: 0, height: "80%"}, {opacity: 1, height: "100%"}, 
+                    {opacity: 0}, {opacity: 1},
+                    `descriptionBoxVisible${year}${month}-=25%`
                 ).addLabel(`descriptionInPlace${year}${month}`)
 
                 if (experience.viewPercent !== undefined) {
-                    tl.to(experience.descriptionParagraphRef.current,
+                    tl.fromTo(experience.descriptionParagraphRef.current,
                         {
-                            yPercent: -experience.viewPercent,
+                            yPercent: experience.viewPercent,
                             duration: experience.viewPercent === 0 ? 0 : experience.viewPercent / 100 + 1
+                        },
+                        {
+                            yPercent: 0
                         }
                     )
                 }

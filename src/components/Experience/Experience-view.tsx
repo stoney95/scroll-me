@@ -18,6 +18,7 @@ function addExperienceDetails(experiences: Map<number, Map<number, ExperienceVie
                 </div>
                 <div ref={experience.labelRef} className='experience-label-container'>
                     {experience.labels.map(label => <div className='experience-label'>{label}</div>)}
+                    {!mobileView && experience.tags.map(tag => <div className='experience-label'>{tag}</div>)}
                 </div>
                 <div ref={experience.descriptionContainerRef} className="experience-description-container">
                     <div ref={experience.descriptionRef} className='experience-description'>

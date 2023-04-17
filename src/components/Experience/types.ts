@@ -16,7 +16,7 @@ export type ExperienceData = {
     scope: string,
     role: string,
     teamSize: number,
-    additionalLabels?: string[]
+    tags?: string[]
 }
 
 export type ExperienceByDate = {
@@ -29,6 +29,7 @@ export type ExperienceViewData = {
     titleShort?: string;
     labels: string[];
     description: string;
+    tags: string[];
 }
 
 export type ExperienceViewByDate = {
